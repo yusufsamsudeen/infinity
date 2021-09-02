@@ -28,15 +28,16 @@ class UserManagement
     }
 
 
-    public function createAccount(UserDTO $userDTO){
+    public function createAccount(UserDTO $userDTO)
+    {
         $emailCount = User::where("email", "=", $userDTO->getEmail())->count();
-        if ($emailCount>0)
+        if ($emailCount > 0)
             return $this->response->setCode(403)->setDescription("Email already exist");
         $phoneNumberCount = UserProfile::where("phone_number", "=", $userDTO->getPhoneNumber())->count();
-        if ($phoneNumberCount>0)
+        if ($phoneNumberCount > 0)
             return $this->response->setCode(403)->setDescription("Phone number already exist");
 
-        try{
+        try {
             DB::beginTransaction();
             $password = Hash::make($userDTO->getPassword());
             $user = new User();
@@ -53,13 +54,29 @@ class UserManagement
             $userProfile->save();
             DB::commit();
             return $this->response->setCode(200)->setDescription("Account Created successfully");
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             DB::rollBack();
             Log::error($exception);
             return $this->response->setCode(500)->setDescription("Unable to create account. Please contact Admin");
         }
     }
 
+    public function getUserProfile($userId)
+    {
+        $user = User::find($userId);
+        $userProfile = UserProfile::where("user_id", "=", $user->id)->first();
+
+        $userDTO = new UserDTO();
+
+        $userDTO->setPhoneNumber($userProfile->phone_number)
+            ->setEmail($user->email)
+            ->setName($user->name)
+            ->setAddress($userProfile->billing_address)
+            ->setCountry($userProfile->country);
+
+        return $userDTO;
+
+    }
 
 
 }

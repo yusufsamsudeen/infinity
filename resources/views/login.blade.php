@@ -36,18 +36,19 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <div class="reg_form" data-aos="fade-up" data-aos-delay="500"><h3 class="form_title">LogIn:</h3>
-                            <p>Savings of up to 15% with our car rental solutions, global coverage and a dedicated
-                                customer team</p><span class="new_account mb_15">Log In or <a href="create-account">Create an Account?</a></span>
+                            <p></p><span class="new_account mb_15">Log In or <a href="create-account">Create an Account?</a></span>
+                            @include("messages")
                             {!! Form::open(['url' => 'login']) !!}
                                 <div class="form_item"><input type="email" name="email" placeholder="Your email"></div>
                                 <div class="form_item"><input type="password" name="password" placeholder="Password">
                                 </div>
                                 <button type="submit" class="custom_btn bg_default_blue text-uppercase">Login <img
                                         src="assets/images/icons/icon_01.png" alt="icon_not_found"></button>
-                                <span class="reset_pass mb_15"><a href="#!">Reset Your Password by e-mail?</a></span>
-                                <div class="checkbox_input mb-0"><label for="input_save"><input id="input_save"
-                                                                                                type="checkbox"> Save my
-                                        name, email, and website in this browser for the next time I comment</label>
+                                <div class="checkbox_input mb-0">
+                                    <label for="input_save">
+                                        <input id="input_save" type="checkbox">
+                                        Save my name, email, and website in this browser for the next time I comment
+                                    </label>
                                 </div>
                             {!! Form::close() !!}
                         </div>

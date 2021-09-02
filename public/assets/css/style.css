@@ -669,7 +669,7 @@ hr {
   content: "";
   position: absolute;
   transition: width 0.2s linear;
-  background-color: #EA001E;
+  background-color: #0AB5AF;
 }
 .text_btn:hover span:before {
   left: 0px;
@@ -987,7 +987,7 @@ button {
   position: relative;
 }
 .header_action_btns button:hover, .header_action_btns button.active {
-  color: #EA001E;
+  color: #0AB5AF;
 }
 
 .stuck .header_action_btns button {
@@ -1163,7 +1163,7 @@ button {
   font-family: "Lato", sans-serif;
 }
 .user_dropdown .profile_info:hover .user_name > a {
-  color: #EA001E;
+  color: #0AB5AF;
   text-decoration: underline;
 }
 .user_dropdown .profile_info .user_title {
@@ -1194,7 +1194,7 @@ button {
   background-color: #f4f8fb;
 }
 .user_dropdown > ul > li:hover > a > i {
-  color: #EA001E;
+  color: #0AB5AF;
 }
 
 /* header section - end */
@@ -2910,7 +2910,7 @@ blockquote h4 {
   color: #000C21;
 }
 .account_tabs_menu a:hover, .account_tabs_menu a.active {
-  color: #EA001E;
+  color: #81D8D0;
   background-color: #ffffff;
 }
 .account_tabs_menu i {
@@ -2942,7 +2942,7 @@ blockquote h4 {
   margin-top: 30px;
 }
 .account_info_list .text_btn span {
-  color: #EA001E;
+  color: #81D8D0;
 }
 
 /* 17 - account page - end

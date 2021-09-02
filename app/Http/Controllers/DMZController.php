@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Service\BookingService;
 use App\Service\DTO\ResponseDTO;
 use App\Service\DTO\UserDTO;
 use App\Service\UserManagement;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,16 +15,20 @@ class DMZController extends Controller
 
     private $response;
     private $userManagement;
+    private $bookingService;
 
     /**
      * DMZController constructor.
-     * @param $response
-     * @param $userManagement
+     * @param ResponseDTO $response
+     * @param UserManagement $userManagement
+     * @param BookingService $bookingService
      */
-    public function __construct(ResponseDTO $response, UserManagement $userManagement)
+    public function __construct(ResponseDTO $response, UserManagement $userManagement,
+                                BookingService $bookingService)
     {
         $this->response = $response;
         $this->userManagement = $userManagement;
+        $this->bookingService = $bookingService;
     }
 
 
@@ -75,7 +81,35 @@ class DMZController extends Controller
     public function login(Request $request){
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect('book');
+            return redirect('account');
+        }else{
+            $this->response->setCode(403)->setDescription("Invalid Credentials");
+            return respond($this->response, true);
         }
     }
+
+    /**
+     * @Get("book")
+     * @return string
+     */
+    public function book(){
+        $this->response = $this->bookingService->getAllVehicles();
+        $vehicles = $this->response->getBody();
+        return view("book", ["vehicles" => $vehicles]);
+    }
+
+    /**
+     * @Get("logout")
+     * @param Request $request
+     */
+    public function logout(Request $request){
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+        return redirect("/");
+    }
+
+
+
 }

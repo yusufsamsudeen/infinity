@@ -21,7 +21,7 @@
         </div>
     </div>
 </div>
-<header class="header_section sticky text-white clearfix">
+<header class="header_section secondary_header sticky text-white clearfix">
     <div class="header_top clearfix">
         <div class="container">
             <div class="row align-items-center">
@@ -48,12 +48,37 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-6">
-                    <div class="brand_logo"><a href="/"><img src="{{asset("assets/images/logo/logo_01_1x.png")}}"
-                                                                      srcset="{{asset("assets/images/logo/logo_01_2x.png")}} 2x"
-                                                                      alt="logo_not_found"> <img
-                                src="{{asset("assets/images/logo/logo_02_1x.png")}}" srcset="{{asset("assets/images/logo/logo_02_2x.png")}} 2x"
-                                alt="logo_not_found"></a></div>
+                    <div class="brand_logo"><a href="/">
+                            <img src="{{asset("assets/images/logo/logo_01_1x.png")}}" srcset="{{asset("assets/images/logo/logo_01_2x.png")}} 2x"
+                                                                      alt="logo_not_found">
+                            <img src="{{asset("assets/images/logo/logo_02_1x.png")}}" srcset="{{asset("assets/images/logo/logo_02_2x.png")}} 2x"
+                                alt="logo_not_found"></a>
+                    </div>
                 </div>
+                @auth()
+                <div class="col-lg-9 col-md-6 col-sm-6 col-6 order-last">
+                    <ul class="header_action_btns ul_li_right clearfix">
+
+                        <li class="dropdown">
+                            <button type="button" class="user_btn" id="user_dropdown" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false"><i class="fal fa-user"></i></button>
+                            <div class="user_dropdown rotors_dropdown dropdown-menu clearfix"
+                                 aria-labelledby="user_dropdown">
+                                <div class="profile_info clearfix"><a href="#!" class="user_thumbnail"><img
+                                            src="assets/images/meta/img_01.png" alt="thumbnail_not_found"></a>
+                                    <div class="user_content"><h4 class="user_name"><a href="#!">{{auth()->user()->name}}</a></h4>
+                                    </div>
+                                </div>
+                                <ul class="ul_li_block clearfix">
+                                    <li><a href="/account"><i class="fal fa-user-circle"></i> Profile</a></li>
+                                    <li><a href="/logout"><i class="fal fa-sign-out"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                @endauth
             </div>
         </div>
     </div>

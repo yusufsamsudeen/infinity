@@ -1,11 +1,3 @@
-// ==================================================
-// Project Name  :  Rotors – Car Rental HTML5 Template
-// File          :  JS Base
-// Version       :  1.0.0
-// Last change   :  17 November 2020
-// Author        :  Merkulove (https://themeforest.net/user/merkulove)
-// Developer:    :  Rakibul Islam Dewan
-// ==================================================
 
 
 (function($) {
@@ -65,7 +57,7 @@
   $("[data-bg-gradient]").each(function () {
     $(this).css("background-image", $(this).attr("data-bg-gradient"))
   });
-  
+
   $('[data-bg-image]').each(function() {
     $(this).css('background-image', 'url('+ $(this).attr('data-bg-image') + ')');
   });
@@ -581,7 +573,7 @@
     map.addMarker({
       lat: $markerLat,
       lng: $markerLon,
-      icon: $marker,    
+      icon: $marker,
       infoWindow: {
         content: $info
       }

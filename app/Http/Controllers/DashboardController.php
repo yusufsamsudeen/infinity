@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Service\BookingService;
 use App\Service\DTO\BookingDTO;
 use App\Service\DTO\ResponseDTO;
+use App\Service\UserManagement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,26 +13,29 @@ class DashboardController extends Controller
 {
     private $response;
     private $bookingService;
+    private $userManagement;
 
     /**
      * DashboardController constructor.
      */
-    public function __construct(ResponseDTO $response, BookingService $bookingService)
+    public function __construct(ResponseDTO $response, BookingService $bookingService, UserManagement $userManagement)
     {
         $this->middleware('auth');
         $this->response = $response;
         $this->bookingService = $bookingService;
+        $this->userManagement = $userManagement;
     }
 
     /**
-     * @Get("book")
-     * @return string
+     * @Get("account")
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function book(){
-        $this->response = $this->bookingService->getAllVehicles();
-        $vehicles = $this->response->getBody();
-        return view("book", ["vehicles" => $vehicles]);
+    public function account(){
+        $user = $this->userManagement->getUserProfile(Auth::user()->id);
+        return view("account", ["user" => $user]);
     }
+
+
 
     /**
      * @Get("book/{id}")

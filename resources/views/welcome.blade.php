@@ -21,7 +21,7 @@
                         <p data-aos="fade-up" data-aos-delay="300">Find that car that fits your budget, rugged and luxurious. You are just a click away from
                         an experience of a lifetime.</p>
                         <div data-aos="fade-up" data-aos-delay="500"><a
-                                class="custom_btn bg_default_blue btn_width text-uppercase" href="#!">Book A Car <img
+                                class="custom_btn bg_default_blue btn_width text-uppercase" href="book">Book A Car <img
                                     src="assets/images/icons/icon_01.png" alt="icon_not_found"></a></div>
                     </div>
                 </div>

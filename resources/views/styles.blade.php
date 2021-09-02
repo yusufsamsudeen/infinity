@@ -1,4 +1,3 @@
-<link rel="shortcut icon" href="{{asset("assets/images/logo/favourite_icon.png")}}">
 <link rel="stylesheet" type="text/css" href="{{asset("assets/css/bootstrap.min.css")}}">
 <link rel="stylesheet" type="text/css" href="{{asset("assets/css/fontawesome.css")}}">
 <link rel="stylesheet" type="text/css" href="{{asset("assets/css/aos.css")}}">
