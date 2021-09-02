@@ -9,6 +9,7 @@ use App\Models\Vehicle;
 use App\Service\DTO\BookingDTO;
 use App\Service\DTO\ResponseDTO;
 use App\Service\DTO\VehicleDTO;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -91,6 +92,49 @@ class BookingService
             Log::error($exception);
             return $this->response->setCode(500)->setDescription('Unable to book vehicle');
         }
+    }
+
+    public function getTotalReservations($userId){
+        return Booking::where("user_id", "=", $userId)->count();
+    }
+
+    public function getUserBookings($userId){
+        $bookings = DB::table("bookings as A")
+            ->join("vehicles as B", "A.vehicle_id", "=", "B.id")
+            ->where("A.user_id", "=", $userId)
+            ->get();
+
+        $bookingList = [];
+
+        foreach ($bookings as $booking){
+            $vehicleDTO = new VehicleDTO();
+            $vehicleDTO->setId($booking->id)
+                ->setTitle($booking->title)
+                ->setImage($booking->image)
+                ->setType($booking->type)
+                ->setPrice($booking->price)
+                ->setAvailable($booking->available)
+                ->setPassengers($booking->passengers)
+                ->setFuel($booking->fuel)
+                ->setTransmission($booking->transmission);
+
+            $bookingDTO = new BookingDTO();
+            $bookingDTO->setUserId($booking->user_id)
+                ->setDropOffDate($booking->drop_off_date)
+                ->setDropOffLocation($booking->drop_of_location)
+                ->setDropOffTime($booking->drop_off_time)
+                ->setPickupDate($booking->pickup_date)
+                ->setPickupTime($booking->pickup_time)
+                ->setPickupLocation($booking->pickup_location)
+                ->setVehicleId($booking->vehicle_id)
+                ->setVehicle($vehicleDTO);
+
+            $bookingList[] = $bookingDTO;
+
+        }
+
+        return $this->response->setCode(200)->setDescription("Reservation history successful")->setBody($bookingList);
+
     }
 
 

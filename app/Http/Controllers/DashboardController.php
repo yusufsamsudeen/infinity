@@ -31,8 +31,10 @@ class DashboardController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function account(){
-        $user = $this->userManagement->getUserProfile(Auth::user()->id);
-        return view("account", ["user" => $user]);
+        $user_id = Auth::user()->id;
+        $user = $this->userManagement->getUserProfile($user_id);
+        $total_reservations = $this->bookingService->getTotalReservations($user_id);
+        return view("account", ["user" => $user, "total_reservation" => $total_reservations]);
     }
 
 
@@ -64,6 +66,15 @@ class DashboardController extends Controller
 
         $this->response = $this->bookingService->bookVehicle($bookingDTO);
         return respond($this->response, true);
+    }
+
+    /**
+     * @Get("history")
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function history(){
+        $this->response = $this->bookingService->getUserBookings(Auth::user()->id);
+        return view("history", ["histories" => $this->response->getBody()]);
     }
 
 }

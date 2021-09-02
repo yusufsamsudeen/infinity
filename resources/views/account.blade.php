@@ -117,10 +117,16 @@
                                     class="list_title mb_30">Booking History:</h3>
                                 <ul class="ul_li_block clearfix">
                                     <li><span>Upcoming Reservations:</span> No Reservations Yet</li>
-                                    <li><span>Past Rentals:</span> 0</li>
+                                    <li><span>Past Rentals:</span> {{$total_reservation}}</li>
                                 </ul>
-                                <a class="text_btn text-uppercase" href="/book"><span>Book A Car</span> <img
-                                        src="{{asset("assets/images/icons/icon_02.png")}}" alt="icon_not_found"></a></div>
+                                <a class="text_btn text-uppercase" href="/book"><span>Book A Car</span>
+                                    <img src="{{asset("assets/images/icons/icon_02.png")}}" alt="icon_not_found">
+                                </a>
+
+                                <a class="text_btn text-uppercase ml-2" href="/history"><span>View History</span>
+                                    <img src="{{asset("assets/images/icons/icon_02.png")}}" alt="icon_not_found">
+                                </a>
+                            </div>
                             <div class="account_info_list" data-aos="fade-up" data-aos-delay="300"><h3
                                     class="list_title mb_30">Booking Profiles:</h3>
                                 <ul class="ul_li_block clearfix">

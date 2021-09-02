@@ -15,6 +15,7 @@ class BookingDTO extends BaseDTO
     private $dropOffLocation;
     private $dropOffDate;
     private $dropOffTime;
+    private $vehicle;
 
     /**
      * @return mixed
@@ -178,6 +179,23 @@ class BookingDTO extends BaseDTO
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getVehicle()
+    {
+        return $this->vehicle;
+    }
+
+    /**
+     * @param mixed $vehicle
+     * @return BookingDTO
+     */
+    public function setVehicle($vehicle)
+    {
+        $this->vehicle = $vehicle;
+        return $this;
+    }
 
 
 }

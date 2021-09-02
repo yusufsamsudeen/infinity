@@ -30,3 +30,17 @@ function encrypt_text($payload){
     return \Illuminate\Support\Facades\Crypt::encryptString($payload);
 }
 
+function daysDiff($start, $end){
+    $end = strtotime($end);
+    $your_date = strtotime($start);
+    $datediff = $end - $your_date;
+
+    $day = round($datediff / (60 * 60 * 24));
+    return $day==0 ? 1 : $day;
+}
+
+function total($start, $end, $cost){
+    $dif = daysDiff($start, $end);
+    return $cost*$dif;
+}
+

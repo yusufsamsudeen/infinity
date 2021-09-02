@@ -65,7 +65,7 @@
                             <div class="user_dropdown rotors_dropdown dropdown-menu clearfix"
                                  aria-labelledby="user_dropdown">
                                 <div class="profile_info clearfix"><a href="#!" class="user_thumbnail"><img
-                                            src="assets/images/meta/img_01.png" alt="thumbnail_not_found"></a>
+                                            src="{{asset("assets/images/meta/img_01.png")}}" alt="thumbnail_not_found"></a>
                                     <div class="user_content"><h4 class="user_name"><a href="#!">{{auth()->user()->name}}</a></h4>
                                     </div>
                                 </div>
