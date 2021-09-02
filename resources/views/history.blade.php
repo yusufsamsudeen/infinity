@@ -35,7 +35,7 @@
                             class="item_title mb-0"><a href="#!">{{$history->getVehicle()->getTitle()}}</a></h3>
                         <div class="item_image position-relative"><a class="image_wrap" href="#!"><img
                                     src="{{asset($history->getVehicle()->getImage())}}" alt="image_not_found"> </a><span
-                                class="item_price bg_default_blue">{{$history->getVehicle()->getPrice()}}/Day</span></div>
+                                class="item_price bg_default_blue">AED {{$history->getVehicle()->getPrice()}}/Day</span></div>
                         <ul class="info_list ul_li_center clearfix">
                             <li>{{$history->getVehicle()->getType()}}</li>
                             <li>{{$history->getVehicle()->getTransmission()}}</li>
